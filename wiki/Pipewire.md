@@ -8,11 +8,11 @@ This guide covers the installation and basic service configuration of **<package
 
 Before installation, it is recommended to check the USE flags for the package to customize its features.
 
-root # emerge --pretend --verbose <package_name>
+root # ```emerge --pretend --verbose <package_name>```
 
 *(Optional)* If you need to modify USE flags, add them to your `package.use` file:
 
-root # echo "category/<package_name> flag1 flag2" >> /etc/portage/package.use/<package_name>
+root # ```echo "category/<package_name> flag1 flag2" >> /etc/portage/package.use/<package_name>```
 
 ---
 
@@ -20,7 +20,7 @@ root # echo "category/<package_name> flag1 flag2" >> /etc/portage/package.use/<p
 
 Install the package using Portage, Gentoo's package manager:
 
-root # emerge --ask category/<package_name>
+root # ```emerge --ask category/<package_name>```
 
 ---
 
@@ -31,18 +31,18 @@ Once installed, you need to manage the service. Choose the section below that ma
 ### OpenRC (Default)
 
 To start the service immediately:
-root # rc-service <service_name> start
+root # ```rc-service <service_name> start```
 
 To enable the service to start automatically at boot:
-root # rc-update add <service_name> default
+root # ```rc-update add <service_name> default```
 
 ### systemd
 
 To start the service immediately:
-root # systemctl start <service_name>
+root # ```systemctl start <service_name>```
 
 To enable the service to start automatically at boot:
-root # systemctl enable <service_name>
+root # ```systemctl enable <service_name>```
 
 ---
 
@@ -53,13 +53,13 @@ To verify that the application is running correctly, you can check its status or
 ### Check Service Status
 
 **OpenRC:**
-root # rc-service <service_name> status
+root # ```rc-service <service_name> status```
 
 **systemd:**
-root # systemctl status <service_name>
+root # ```systemctl status <service_name>```
 
 ### Run Application (as regular user)
 
 To check the installed version or run user-level commands:
 
-user $ <package_name> --version
+user $ ```<package_name> --version```
