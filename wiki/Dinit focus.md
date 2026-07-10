@@ -10,7 +10,7 @@ Our system configurations are tailored specifically for dinit to ensure maximum 
 
 While the underlying system components may technically allow the installation of alternative init systems (such as OpenRC, Runit, or S6), please be aware of our documentation policy:
 
-* **Dinit-First Focus:** The official wiki, installation guides, and troubleshooting pages are written assuming you are using dinit.
+* **Dinit-First Focus:** The official wiki and troubleshooting pages are written assuming you are using dinit.
 * **No Guaranteed Docs for Alternatives:** We do not guarantee up-to-date or comprehensive documentation for other init systems. 
 * **Community-Driven Support:** If you decide to switch your init system, you are entering "unsupported territory." You will largely need to rely on upstream Artix/Arch documentation or community-maintained guides.
 
