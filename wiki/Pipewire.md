@@ -46,6 +46,8 @@ To verify that the application is running correctly, you can check its status.
 
 ### Check Service Status
 
-root # ```dinitctl --user status pipewire```
-root # ```dinitctl --user status pipewire-pulse```
-root # ```dinitctl --user status wireplumber```
+user $ ```dinitctl --user status pipewire```
+
+user $ ```dinitctl --user status pipewire-pulse```
+
+user $ ```dinitctl --user status wireplumber```
