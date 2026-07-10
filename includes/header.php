@@ -41,6 +41,7 @@ $headerBg = $bgImages[array_rand($bgImages)];
     <nav class="main-nav">
         <div class="nav-inner">
             <a href="/" class="<?= $page === 'home' ? 'active' : '' ?>">Home</a>
+            <a href="/installation" class="<?= $page === 'installation' ? 'active' : '' ?>">Installation</a>
             <a href="/wiki.php" class="<?= $page === 'wiki' ? 'active' : '' ?>">Wiki</a>
             <a href="/forum.php" class="<?= $page === 'forum' ? 'active' : '' ?>">Forum</a>
         </div>

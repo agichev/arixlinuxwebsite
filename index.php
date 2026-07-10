@@ -18,6 +18,9 @@ switch (true) {
     case $uri === '/wiki':
         $page = 'wiki';
         break;
+    case $uri === '/installation':
+        $page = 'installation';
+        break;
     case $uri === '/forum':
         $page = 'forum';
         break;
@@ -36,7 +39,7 @@ switch (true) {
         $page = 'post';
         $_GET['id'] = (int)$m[1];
         break;
-    case isset($_GET['page']) && in_array($_GET['page'], ['home','wiki','forum','post','newpost']):
+    case isset($_GET['page']) && in_array($_GET['page'], ['home','installation','wiki','forum','post','newpost']):
         $page = $_GET['page'];
         break;
 }
@@ -47,6 +50,7 @@ switch ($page) {
     case 'wiki': include 'wiki.php'; break;
     case 'forum': include 'forum.php'; break;
     case 'post': include 'post.php'; break;
+    case 'installation': include 'pages/installation.php'; break;
     case 'newpost': include 'newpost.php'; break;
     default: include 'pages/home.php';
 }
