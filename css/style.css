@@ -871,10 +871,46 @@ footer {
     color: #fff;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    .container { margin: 15px auto; padding: 0 10px; }
     .content { padding: 15px; }
-    .tab { padding: 5px 10px; font-size: 12px; }
-    h1 { font-size: 1.8em; }
-    .main-nav a { padding: 10px 12px; font-size: 13px; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.2em; }
+    h3 { font-size: 1.05em; }
+    .tab { padding: 8px 10px; font-size: 12px; }
+    .main-nav .nav-inner { flex-wrap: wrap; }
+    .main-nav a { padding: 10px 12px; font-size: 13px; flex: 1 1 auto; text-align: center; }
     .forum-post-list th, .forum-post-list td { padding: 8px 10px; }
+    .forum-post-list { display: block; overflow-x: auto; }
+    .forum-board a { padding: 12px 14px; }
+    .forum-post-header { flex-direction: column; align-items: flex-start; }
+    .forum-post-body { padding: 12px; }
+    .credits { padding: 12px; }
+    .command-block { font-size: 12px; padding: 12px; }
+    pre { font-size: 12px; padding: 12px; }
+    .copy-btn { padding: 2px 6px; font-size: 10px; }
+    .header-content { padding: 0 10px; }
+    .logo { font-size: 22px; }
+    .tagline { font-size: 12px; }
+    .wiki-list a { padding: 10px 12px; }
+    .pagination a, .pagination span { padding: 5px 8px; font-size: 12px; }
+    .forum-reply-form { padding: 12px; }
+    .forum-newpost-form textarea { min-height: 150px; }
+}
+
+@media (max-width: 400px) {
+    .container { margin: 10px auto; padding: 0 5px; }
+    .content { padding: 10px; }
+    h1 { font-size: 1.3em; }
+    h2 { font-size: 1.1em; }
+    .main-nav .nav-inner { flex-direction: column; }
+    .main-nav a { padding: 8px 10px; font-size: 12px; }
+    .tab { padding: 6px 8px; font-size: 11px; margin-right: 2px; }
+    .tab-panels { padding: 10px; }
+    .command-block { font-size: 11px; padding: 10px; }
+    pre { font-size: 11px; padding: 10px; }
+    .logo { font-size: 20px; }
+    header { padding: 14px 0; }
+    .forum-post-body { font-size: 13px; }
+    .forum-board a { padding: 10px 12px; }
 }

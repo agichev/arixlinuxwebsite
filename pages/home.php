@@ -3,6 +3,7 @@
         <h2 style="margin-top:0;margin-bottom:10px;">Download Arix Linux</h2>
         <p style="font-size:15px;margin:0 0 6px 0;">&#11015; <a href="https://huggingface.co/datasets/agichevsky/arix/resolve/main/arix-20260129.iso" target="_blank" rel="noopener">Main download</a></p>
         <p style="font-size:13px;color:#888;margin:0;">&#11015; <a href="https://archive.org/download/arixiso/arix-20260129.iso" target="_blank" rel="noopener">Mirror</a> (archive.org — slower)</p>
+        <p style="font-size:13px;color:#888;margin:0;">&#11015; <a href="https://github.com/agichev/arixlinuxwebsite/releases/download/Arix/arix-20260129.iso" target="_blank" rel="noopener">Mirror</a> (GitHub)</p>
     </div>
 </div>
 
