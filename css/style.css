@@ -314,6 +314,14 @@ footer {
     color: #666;
 }
 
+footer a {
+    color: #58a6ff;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 .credits {
     margin-top: 50px;
     background-color: #111;
@@ -888,7 +896,7 @@ footer {
     .credits { padding: 12px; }
     .command-block { font-size: 12px; padding: 12px; }
     pre { font-size: 12px; padding: 12px; }
-    .copy-btn { padding: 2px 6px; font-size: 10px; }
+    .copy-btn { display: none; }
     .header-content { padding: 0 10px; }
     .logo { font-size: 22px; }
     .tagline { font-size: 12px; }
@@ -909,6 +917,7 @@ footer {
     .tab-panels { padding: 10px; }
     .command-block { font-size: 11px; padding: 10px; }
     pre { font-size: 11px; padding: 10px; }
+    .copy-btn { display: none; }
     .logo { font-size: 20px; }
     header { padding: 14px 0; }
     .forum-post-body { font-size: 13px; }

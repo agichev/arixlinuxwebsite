@@ -5,7 +5,7 @@
         </div>
 
         <footer>
-            &copy; 2025-2026 Arix Linux
+            &copy; 2025-2026 Arix Linux &nbsp;|&nbsp; <a href="https://github.com/Nick-cpp/arix-install" target="_blank" rel="noopener">arix-install source code</a>
         </footer>
     </div>
 <?php endif; ?>
