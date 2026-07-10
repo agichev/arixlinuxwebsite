@@ -2,7 +2,7 @@
 
 This distribution is a fork of Artix Linux that explicitly treats **dinit** as its primary, default init system and service manager. 
 
-Our architectural choices, system configurations, and default package sets are tailored specifically for dinit to ensure maximum performance, reliability, and simplicity.
+Our system configurations are tailored specifically for dinit to ensure maximum performance, reliability, and simplicity.
 
 ---
 
@@ -14,12 +14,8 @@ While the underlying system components may technically allow the installation of
 * **No Guaranteed Docs for Alternatives:** We do not guarantee up-to-date or comprehensive documentation for other init systems. 
 * **Community-Driven Support:** If you decide to switch your init system, you are entering "unsupported territory." You will largely need to rely on upstream Artix/Arch documentation or community-maintained guides.
 
-> ⚠️ **Important:** Core system scripts and custom distribution tools are optimized for dinit. Replacing it may break distribution-specific features.
-
 ---
 
 ## Why dinit?
 
 We chose dinit because it combines the best of both worlds: the speed and dependency management of modern service managers with the lightweight, elegant, and secure design philosophy of traditional Unix init systems. 
-
-If you are writing new packages or contributing service scripts, please target dinit format (`/etc/dinit.d/`).
