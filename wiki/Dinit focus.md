@@ -2,7 +2,7 @@
 
 This distribution is a fork of Artix Linux that explicitly treats **dinit** as its primary, default init system and service manager. 
 
-Our architectural choices, system configurations, and default package sets are tailored specifically for dinit to ensure maximum performance, reliability, and simplicity.
+Our system configurations are tailored specifically for dinit to ensure maximum performance, reliability, and simplicity.
 
 ---
 
