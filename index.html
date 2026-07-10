@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Arix Linux | Installation Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arix Linux installation guide - fresh installation from bootable media">
+    <meta name="author" content="Arix Linux">
+    
+    <style>
+        /* Classic 2010s Linux Wiki / Brutalist Theme */
+        
+        body {
+            font-family: "DejaVu Sans", "Liberation Sans", Arial, Helvetica, sans-serif;
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #111;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 2px solid #58a6ff;
+            padding: 20px 0;
+            position: relative;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.7) 40%, rgba(17,17,17,0.3) 100%);
+            pointer-events: none;
+        }
+        
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: #58a6ff;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            color: #888;
+            margin: 5px 0 0 0;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .content {
+            background-color: #252525;
+            border: 1px solid #333;
+            padding: 30px;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            color: #ffffff;
+            font-weight: normal;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+            color: #58a6ff;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin: 0 0 15px 0;
+        }
+        
+        code {
+            font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            padding: 1px 4px;
+            color: #fff;
+        }
+        
+        /* Alerts */
+        .note, .warning {
+            padding: 12px 15px;
+            margin: 20px 0;
+            background-color: #1e1e1e;
+        }
+        
+        .note {
+            border-left: 4px solid #58a6ff;
+        }
+        
+        .warning {
+            border-left: 4px solid #f85149;
+        }
+        
+        .note p, .warning p {
+            margin: 0;
+        }
+        
+        .comment {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 2px solid #444;
+        }
+        
+        /* Terminal / Command Blocks */
+        .command-wrapper {
+            position: relative;
+            margin: 15px 0;
+        }
+        
+        .command-block {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            padding: 15px;
+            font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        .command-line {
+            display: block;
+            color: #c9d1d9;
+        }
+        
+        .command-line::before {
+            content: "# ";
+            color: #58a6ff;
+            font-weight: bold;
+        }
+        
+        pre {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            padding: 15px;
+            color: #c9d1d9;
+            font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 3px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .copy-btn:hover {
+            background-color: #30363d;
+            color: #fff;
+        }
+
+        .copy-btn.copied {
+            background-color: #238636;
+            border-color: #2ea043;
+            color: #fff;
+        }
+        
+        /* Interactive Selectors (Tabs 2010s Style) */
+        .selector-group {
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #444;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .tab {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-bottom: none;
+            margin-right: 5px;
+            padding: 6px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .tab:hover {
+            color: #ddd;
+            background-color: #252525;
+        }
+        
+        .tab.active {
+            background-color: #2a2a2a;
+            color: #fff;
+            font-weight: bold;
+            padding-bottom: 7px;
+            margin-bottom: -1px;
+        }
+        
+        .tab-panels {
+            border: 1px solid #444;
+            border-top: none;
+            background-color: #2a2a2a;
+            padding: 15px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Lists */
+        ul.feature-list {
+            margin: 15px 0 15px 20px;
+            padding: 0;
+            color: #dcdcdc;
+        }
+        
+        ul.feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        /* Footer & Credits */
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .credits {
+            margin-top: 50px;
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            text-align: center;
+            font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
+            font-size: 12px;
+        }
+
+        .credits span {
+            color: #888;
+        }
+
+        .credits strong {
+            color: #fff;
+            font-weight: normal;
+        }
+
+        @media (max-width: 600px) {
+            .content { padding: 15px; }
+            .tab { padding: 5px 10px; font-size: 12px; }
+            h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <header id="site-header">
+        <div class="header-content">
+            <div class="logo">Arix<span>Linux</span></div>
+            <div class="tagline">Lightweight, systemd-free Linux distribution</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <h1>Installation Guide</h1>
+            
+            <div class="note">
+                <p><strong>Note:</strong> Use the <code>arix-install</code> script for a guided, automated installation experience.</p>
+            </div>
+
+            <h2>Update Keyring</h2>
+            <p>Before proceeding with the installation, it is necessary to update the repository keys:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">pacman -Sy artixlinux-keyring</span>
+                </div>
+            </div>
+            <p class="comment">This prevents package signature errors during the installation process. This step is required for both manual and script-based installation.</p>
+
+            <h2>Manual Installation</h2>
+            <p>This guide covers manual installation through the terminal. The installation images work on both BIOS and UEFI systems.</p>
+            
+            <h3>Set the Keyboard Layout</h3>
+            <p>First, check available keyboard layouts:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">ls -R /usr/share/kbd/keymaps</span>
+                </div>
+            </div>
+            <p class="comment">This command lists all available keyboard layouts in the system.</p>
+            
+            <p>Then set your preferred layout (for example, Spanish):</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">loadkeys es</span>
+                </div>
+            </div>
+            <p class="comment">Replace "es" with your preferred layout code (e.g., "us" for US English).</p>
+            
+            <h3>Partition Your Disk</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">cfdisk /dev/sda</span>
+                </div>
+            </div>
+            <p class="comment">Launch the cfdisk partitioning tool. Replace /dev/sda with your target disk.</p>
+            
+            <div class="note">
+                <p><strong>UEFI Note:</strong> On UEFI systems with GPT, create an EFI system partition (ESP) of about 512 MiB.</p>
+            </div>
+            
+            <h3>Format Partitions</h3>
+            <p>Format your root, home, and swap partitions:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">mkfs.ext4 -L ROOT /dev/sda2</span>
+                    <span class="command-line">mkfs.ext4 -L HOME /dev/sda3 (if created)</span>
+                    <span class="command-line">mkswap -L SWAP /dev/sda4 (if created)</span>
+                </div>
+            </div>
+            <p class="comment">Replace /dev/sda2, /dev/sda3, /dev/sda4 with your actual partition numbers. Home and swap partitions are optional.</p>
+            
+            <p>For UEFI installation, format ESP as FAT32:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">mkfs.fat -F 32 /dev/sda1</span>
+                    <span class="command-line">fatlabel /dev/sda1 ESP</span>
+                </div>
+            </div>
+            <p class="comment">The EFI system partition must be FAT32 formatted.</p>
+            
+            <h3>Mount Partitions</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">swapon /dev/disk/by-label/SWAP (if created)</span>
+                    <span class="command-line">mount /dev/disk/by-label/ROOT /mnt</span>
+                    <span class="command-line">mount --mkdir /dev/disk/by-label/HOME /mnt/home (if created)</span>
+                    <span class="command-line">mount --mkdir /dev/disk/by-label/ESP /mnt/boot</span>
+                </div>
+            </div>
+            <p class="comment">Activate swap, mount root partition, and create /boot directory for ESP.</p>
+            
+            <h3>Connect to the Internet</h3>
+            <p>Verify your connection:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">ping artixlinux.org</span>
+                </div>
+            </div>
+            <p class="comment">Press Ctrl+C to stop pinging. If you get responses, you're connected.</p>
+            
+            <h3>Update System Clock</h3>
+            <p>Activate NTP daemon to synchronize system clock:</p>
+            
+            <div class="selector-group">
+                <div class="tabs">
+                    <div class="tab active" data-target="openrc-clock">OpenRC</div>
+                    <div class="tab" data-target="runit-clock">Runit</div>
+                    <div class="tab" data-target="s6-clock">s6</div>
+                    <div class="tab" data-target="dinit-clock">dinit</div>
+                </div>
+                <div class="tab-panels">
+                    <div id="openrc-clock" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">rc-service ntpd start</span>
+                            </div>
+                        </div>
+                        <p class="comment">Start the NTP service to sync system time.</p>
+                    </div>
+                    <div id="runit-clock" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">sv up openntpd</span>
+                            </div>
+                        </div>
+                        <p class="comment">Start the NTP service using runit.</p>
+                    </div>
+                    <div id="s6-clock" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">s6-rc -u change openntpd</span>
+                            </div>
+                        </div>
+                        <p class="comment">Start the NTP service using s6.</p>
+                    </div>
+                    <div id="dinit-clock" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">dinitctl start ntpd</span>
+                            </div>
+                        </div>
+                        <p class="comment">Start the NTP service using dinit.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Install Base System</h3>
+            <p>Select your init system and install base packages:</p>
+            
+            <div class="selector-group">
+                <div class="tabs">
+                    <div class="tab active" data-target="openrc-install">OpenRC</div>
+                    <div class="tab" data-target="runit-install">Runit</div>
+                    <div class="tab" data-target="s6-install">s6</div>
+                    <div class="tab" data-target="dinit-install">dinit</div>
+                </div>
+                <div class="tab-panels">
+                    <div id="openrc-install" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt base base-devel openrc elogind-openrc</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install base system with OpenRC init system.</p>
+                    </div>
+                    <div id="runit-install" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt base base-devel runit elogind-runit</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install base system with runit init system.</p>
+                    </div>
+                    <div id="s6-install" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt base base-devel s6-base elogind-s6</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install base system with s6 init system.</p>
+                    </div>
+                    <div id="dinit-install" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt base base-devel dinit elogind-dinit</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install base system with dinit init system.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Install Kernel</h3>
+            <p>Select your kernel:</p>
+            
+            <div class="selector-group">
+                <div class="tabs">
+                    <div class="tab active" data-target="linux-kernel">Linux</div>
+                    <div class="tab" data-target="lts-kernel">Linux LTS</div>
+                    <div class="tab" data-target="zen-kernel">Linux Zen</div>
+                </div>
+                <div class="tab-panels">
+                    <div id="linux-kernel" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt linux linux-firmware</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install standard Linux kernel with firmware.</p>
+                    </div>
+                    <div id="lts-kernel" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt linux-lts linux-firmware</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install Long-Term Support (LTS) kernel.</p>
+                    </div>
+                    <div id="zen-kernel" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">basestrap /mnt linux-zen linux-firmware</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install Zen kernel (optimized for desktop performance).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Generate fstab and chroot into the new system:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">fstabgen -U /mnt >> /mnt/etc/fstab</span>
+                    <span class="command-line">arix-chroot /mnt</span>
+                </div>
+            </div>
+            <p class="comment">Generate filesystem table and enter the new system environment.</p>
+            
+            <h2>Configure Base System</h2>
+            
+            <h3>System Clock Configuration</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</span>
+                    <span class="command-line">hwclock --systohc</span>
+                </div>
+            </div>
+            <p class="comment">Set timezone (replace Region/City with your location, e.g., America/New_York).</p>
+            
+            <h3>Localization</h3>
+            <p>Edit locale configuration file:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">nano /etc/locale.gen</span>
+                </div>
+            </div>
+            <p class="comment">Open the file in nano text editor. Remove # from lines for locales you want to enable.</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">locale-gen</span>
+                </div>
+            </div>
+            <p class="comment">Generate the locales you enabled in the previous step.</p>
+            
+            <p>Set the system locale:</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">nano /etc/locale.conf</span>
+                </div>
+            </div>
+            <p class="comment">Open /etc/locale.conf and add the following lines:</p>
+            <pre>export LANG="en_US.UTF-8"
+export LC_COLLATE="C"</pre>
+            <p class="comment">Configure the system locale settings. Replace "en_US.UTF-8" with your preferred locale.</p>
+            
+            <h3>Configure Hostname</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">echo "myhostname" > /etc/hostname</span>
+                </div>
+            </div>
+            <p class="comment">Set hostname (replace "myhostname" with your desired hostname).</p>
+            
+            <h3>Configure /etc/hosts</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">nano /etc/hosts</span>
+                </div>
+            </div>
+            <p class="comment">Open /etc/hosts in nano and make sure it looks similar to this (replace "myhostname" with your actual hostname):</p>
+            <pre>127.0.0.1        localhost
+::1              localhost
+127.0.1.1        myhostname.localdomain myhostname</pre>
+            
+            <h3>Change Password & Add a User</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">passwd</span>
+                </div>
+            </div>
+            <p class="comment">Set root password (enter twice).</p>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">useradd -m user</span>
+                    <span class="command-line">passwd user</span>
+                </div>
+            </div>
+            <p class="comment">Create a new user (replace "user" with your username) and set its password.</p>
+            
+            <h3>Boot Loader</h3>
+            <p>Select your boot type:</p>
+            
+            <div class="selector-group">
+                <div class="tabs">
+                    <div class="tab active" data-target="bios-boot">BIOS</div>
+                    <div class="tab" data-target="uefi-boot">UEFI</div>
+                </div>
+                <div class="tab-panels">
+                    <div id="bios-boot" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">pacman -S grub</span>
+                                <span class="command-line">grub-install --recheck /dev/sda</span>
+                                <span class="command-line">grub-mkconfig -o /boot/grub/grub.cfg</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install GRUB bootloader for BIOS systems.</p>
+                    </div>
+                    <div id="uefi-boot" class="tab-content">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">pacman -S grub efibootmgr</span>
+                                <span class="command-line">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</span>
+                                <span class="command-line">grub-mkconfig -o /boot/grub/grub.cfg</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install GRUB bootloader for UEFI systems.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Network Configuration</h3>
+            <p>Select network manager:</p>
+            
+            <div class="selector-group">
+                <div class="tabs network-selector">
+                    <div class="tab active" data-target="dhcpcd-network">DHCPCD</div>
+                    <div class="tab" data-target="networkmanager-network">NetworkManager</div>
+                </div>
+                <div class="tab-panels">
+                    <div id="dhcpcd-network" class="tab-content active network-content">
+                        <p>Select for your init system:</p>
+                        <div class="selector-group">
+                            <div class="tabs">
+                                <div class="tab active" data-target="dhcpcd-openrc">OpenRC</div>
+                                <div class="tab" data-target="dhcpcd-runit">Runit</div>
+                                <div class="tab" data-target="dhcpcd-s6">s6</div>
+                                <div class="tab" data-target="dhcpcd-dinit">dinit</div>
+                            </div>
+                            <div class="tab-panels">
+                                <div id="dhcpcd-openrc" class="tab-content active">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S dhcpcd dhcpcd-openrc</span>
+                                            <span class="command-line">rc-update add dhcpcd</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable DHCP client for OpenRC.</p>
+                                </div>
+                                <div id="dhcpcd-runit" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S dhcpcd dhcpcd-runit</span>
+                                            <span class="command-line">ln -s /etc/runit/sv/dhcpcd /etc/runit/runsvdir/default</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable DHCP client for runit.</p>
+                                </div>
+                                <div id="dhcpcd-s6" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S dhcpcd dhcpcd-s6</span>
+                                            <span class="command-line">touch /etc/s6/adminsv/default/contents.d/dhcpcd</span>
+                                            <span class="command-line">s6-db-reload</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable DHCP client for s6.</p>
+                                </div>
+                                <div id="dhcpcd-dinit" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S dhcpcd dhcpcd-dinit</span>
+                                            <span class="command-line">ln -s /etc/dinit.d/dhcpcd /etc/dinit.d/boot.d/</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable DHCP client for dinit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="networkmanager-network" class="tab-content network-content">
+                        <p>Select for your init system:</p>
+                        <div class="selector-group">
+                            <div class="tabs">
+                                <div class="tab active" data-target="nm-openrc">OpenRC</div>
+                                <div class="tab" data-target="nm-runit">Runit</div>
+                                <div class="tab" data-target="nm-s6">s6</div>
+                                <div class="tab" data-target="nm-dinit">dinit</div>
+                            </div>
+                            <div class="tab-panels">
+                                <div id="nm-openrc" class="tab-content active">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S networkmanager networkmanager-openrc</span>
+                                            <span class="command-line">rc-update add NetworkManager</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable NetworkManager for OpenRC.</p>
+                                </div>
+                                <div id="nm-runit" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S networkmanager networkmanager-runit</span>
+                                            <span class="command-line">ln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/default</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable NetworkManager for runit.</p>
+                                </div>
+                                <div id="nm-s6" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S networkmanager networkmanager-s6</span>
+                                            <span class="command-line">touch /etc/s6/adminsv/default/contents.d/NetworkManager</span>
+                                            <span class="command-line">s6-db-reload</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable NetworkManager for s6.</p>
+                                </div>
+                                <div id="nm-dinit" class="tab-content">
+                                    <div class="command-wrapper">
+                                        <button class="copy-btn">[Copy]</button>
+                                        <div class="command-block">
+                                            <span class="command-line">pacman -S networkmanager networkmanager-dinit</span>
+                                            <span class="command-line">ln -s /etc/dinit.d/NetworkManager /etc/dinit.d/boot.d/</span>
+                                        </div>
+                                    </div>
+                                    <p class="comment">Install and enable NetworkManager for dinit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Configure Arix Identity</h3>
+            <div class="warning">
+                <p><strong>Important:</strong> If you skip this step, your system will identify itself as Artix Linux instead of Arix Linux.</p>
+                <p>Execute these commands to properly configure Arix Linux identity:</p>
+            </div>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">printf "NAME=\"Arix Linux\"\nPRETTY_NAME=\"Arix Linux\"\nID=arix\nID_LIKE=artix\nANSI_COLOR=\"0;34\"\n" > /etc/os-release</span>
+                    <span class="command-line">printf "DISTRIB_ID=Arix\nDISTRIB_RELEASE=rolling\nDISTRIB_DESCRIPTION=\"Arix Linux\"\n" > /etc/lsb-release</span>
+                    <span class="command-line">rm /etc/artix-release</span>
+                    <span class="command-line">touch /etc/arix-release</span>
+                    <span class="command-line">sed -i 's/Artix/Arix/g' /etc/default/grub</span>
+                    <span class="command-line">grub-mkconfig -o /boot/grub/grub.cfg</span>
+                </div>
+            </div>
+            
+            <h3>Reboot System</h3>
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">exit</span>
+                    <span class="command-line">umount -R /mnt</span>
+                    <span class="command-line">reboot</span>
+                </div>
+            </div>
+            <p class="comment">Exit chroot, unmount all partitions, and reboot into your new Arix Linux installation.</p>
+            
+            <h2 style="margin-top: 40px;">Alternative: Using arix-install Script</h2>
+            <div style="background-color: #2a2a2a; border: 1px solid #444; padding: 25px; margin-top: 20px;">
+                
+                <p>For an interactive guided installation, use the <code>arix-install</code> script:</p>
+                <div class="command-wrapper">
+                    <button class="copy-btn">[Copy]</button>
+                    <div class="command-block">
+                        <span class="command-line">arix-install</span>
+                    </div>
+                </div>
+                <p class="comment">Launch the interactive installation script.</p>
+                
+                <p>The script provides a step-by-step interface that guides you through:</p>
+                <ul class="feature-list">
+                    <li>Hostname configuration</li>
+                    <li>User creation with passwords</li>
+                    <li>BIOS or UEFI boot selection</li>
+                    <li>Swap partition configuration</li>
+                    <li>Time zone selection</li>
+                    <li>Locale configuration</li>
+                    <li>Network manager choice (dhcpcd or NetworkManager)</li>
+                    <li>Audio system selection (PipeWire)</li>
+                    <li>Desktop environment selection</li>
+                    <li>Package selection based on choices</li>
+                </ul>
+                
+                <p style="margin-bottom: 0;">This is the recommended method for new users or those who prefer a guided installation process.</p>
+            </div>
+            
+            <div class="credits">
+                <span>Website made by</span> <strong>Agichev</strong> &nbsp;|&nbsp; <span>Distribution made by</span> <strong>Mikola</strong>
+            </div>
+
+        </div>
+        
+        <footer>
+            &copy; 2025 Arix Linux
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Random header background
+            var images = [
+                'pictures/_ (5).jpeg',
+                'pictures/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg',
+                'pictures/bermix-studio-bCrM2e1M0a4-unsplash.jpg',
+                'pictures/daniel-falcao-Pt27b3dRdVA-unsplash.jpg',
+                'pictures/dima-solomin-inx88HqItBU-unsplash.jpg',
+                'pictures/enrique-alarcon-lg9mt2IgR7I-unsplash.jpg',
+                'pictures/ethan-da-silva-50iz5FOQDqM-unsplash.jpg',
+                'pictures/eury-escudero-TSt0b5MHBz8-unsplash.jpg',
+                'pictures/luis-villasmil-S2qA7JhjI6Y-unsplash.jpg',
+                'pictures/milad-fakurian-saOPkvma85M-unsplash.jpg',
+                'pictures/muha-ajjan-sL2BRR1cuvM-unsplash.jpg',
+                'pictures/pawel-nolbert-4u2U8EO9OzY-unsplash.jpg',
+                'pictures/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg',
+                'pictures/vasilis-chatzopoulos-JcUQoTOeW3s-unsplash.jpg',
+                'pictures/vimal-s-ZhVUAUc8V4s-unsplash.jpg',
+                'pictures/xt7-core-H6qAK5Wg3C0-unsplash.jpg',
+                'pictures/yousef-samuil-hsFbf2QGMsk-unsplash.jpg'
+            ];
+            var header = document.getElementById('site-header');
+            header.style.backgroundImage = 'url(' + images[Math.floor(Math.random() * images.length)] + ')';
+
+            // General Tabs Logic
+            document.querySelectorAll('.tabs .tab').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const targetId = this.getAttribute('data-target');
+                    const tabContainer = this.parentElement;
+                    const panelContainer = tabContainer.nextElementSibling;
+                    
+                    // Reset tabs in this specific group
+                    tabContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Reset panels in this specific group
+                    Array.from(panelContainer.children).forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Show target
+                    const target = document.getElementById(targetId);
+                    if(target) {
+                        target.classList.add('active');
+                    }
+                });
+            });
+
+            // Copy to clipboard functionality
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const commandBlock = this.nextElementSibling;
+                    const lines = commandBlock.querySelectorAll('.command-line');
+                    let textToCopy = Array.from(lines).map(line => line.textContent.trim()).join('\n');
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        this.textContent = '[Copied]';
+                        this.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            this.textContent = '[Copy]';
+                            this.classList.remove('copied');
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
