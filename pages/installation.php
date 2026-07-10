@@ -97,7 +97,7 @@ if ($isStandalone) {
 <div class="command-wrapper">
     <button class="copy-btn">[Copy]</button>
     <div class="command-block">
-        <span class="command-line">ping artixlinux.org</span>
+        <span class="command-line">ping arixlinux.wasmer.app</span>
     </div>
 </div>
 <p class="comment">Press Ctrl+C to stop pinging. If you get responses, you're connected.</p>
