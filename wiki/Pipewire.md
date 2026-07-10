@@ -1,6 +1,6 @@
 # Installing Pipewire
 
-This guide covers the installation and basic service configuration of **Pipewire** on Arix Linux.
+This guide covers the installation and basic service configuration of **Pipewire** on Arix Linux. Be careful which user you run commands from.
 
 ---
 
