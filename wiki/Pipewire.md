@@ -1,4 +1,4 @@
-# Installing <package_name>
+# Installing 
 
 This guide covers the installation and basic service configuration of **<package_name>** on Gentoo Linux.
 
