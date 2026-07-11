@@ -8,7 +8,7 @@ This guide covers the installation and basic service configuration of **Pipewire
 
 Install the package using pacman
 
-root # **```pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit```**
+root # ```pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit```
 
 ---
 
