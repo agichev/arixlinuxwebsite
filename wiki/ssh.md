@@ -18,29 +18,20 @@ pacman -S openssh
 
 OpenSSH provides several commands, see each command's man page for usage information:
 - [scp(1)](https://man.archlinux.org/man/scp.1.en) - secure file copy
-- sftp(1) - secure file transfer
-- ssh-add(1) - add private key identities to the authentication agent
-- ssh-agent(1) - authentication agent
-- ssh-copy-id(1) - use locally available keys to authorize logins on a remote machine
-- ssh-keygen(1) - authentication key utility
-- ssh-keyscan(1) - gather SSH public keys from servers
-- sshd(8) - OpenSSH daemo
+- [sftp(1)](https://man.archlinux.org/man/sftp.1.en) - secure file transfer
+- [ssh-add(1)](https://man.archlinux.org/man/ssh-add.1.en) - add private key identities to the authentication agent
+- [ssh-agent(1)](https://man.archlinux.org/man/ssh-agent.1.en) - authentication agent
+- [ssh-copy-id(1)](https://linux.die.net/man/1/ssh-copy-id) - use locally available keys to authorize logins on a remote machine
+- [ssh-keygen(1)](https://man.archlinux.org/man/ssh-keygen.1.en) - authentication key utility
+- [ssh-keyscan(1)](https://man.archlinux.org/man/ssh-keyscan.1.en) - gather SSH public keys from servers
+- [sshd(8)](https://man.archlinux.org/man/sshd.8.en) - OpenSSH daemon
 
 ---
 
-## 3. Verifying the Installation
+## 3. Escape sequences
 
-To verify that the application is running correctly, you can check its status.
+During an active SSH session, pressing the tilde (~) key starts an escape sequence. Enter the following for a list of options: 
 
-### Check Service Status
-
-```user
-dinitctl --user status pipewire
+```ssh
+~?
 ```
-
-```user
-dinitctl --user status pipewire-pulse
-```
-
-```user
-dinitctl --user status wireplumber
