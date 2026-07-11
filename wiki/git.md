@@ -94,10 +94,10 @@ git commit -m "Added text to readme.txt"
 
 One of many features of git - on commit message writing screen (fot example in Vim) [you can see the diff](https://stackoverflow.com/questions/4750148/git-show-index-diff-in-commit-message-as-comment/46160765#46160765)
 
-> ` FILE ` **`~/.gitconfig`**··
-> ··
-> `[commit]`··
-> `    verbose = true`
+> ` FILE ` **`~/.gitconfig`**
+> 
+> `[commit]`
+> &nbsp;&nbsp;&nbsp;&nbsp;`verbose = true`
 
 ---
 
