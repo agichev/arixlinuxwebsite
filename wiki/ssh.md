@@ -1,4 +1,4 @@
-# Installing Pipewire
+# SSH
 
 This guide covers the installation and basic service configuration of **Pipewire** on Arix Linux. Be careful which user you run commands from.
 
@@ -8,7 +8,7 @@ This guide covers the installation and basic service configuration of **Pipewire
 
 Install the package using pacman.
 
-```bash
+```root #
 pacman -S openssh
 ```
 
@@ -32,6 +32,47 @@ OpenSSH provides several commands, see each command's man page for usage informa
 
 During an active SSH session, pressing the tilde (~) key starts an escape sequence. Enter the following for a list of options: 
 
-```ssh
+```ssh>
 ~?
 ```
+
+---
+
+## Passwordless authentication to a remote SSH server
+
+Handy for git server managment.
+
+---
+
+**! Warning !**
+Leaving the passphrase empty implies the private key file will not be encrypted. An attacker having access to the local filesystem will be able to read the private key.
+
+---
+
+**Note**
+
+The default file names of the keys must not be changed, or the server may persist in asking fot a password even after running ``ssh-copy-id``. The file name will be one of:
+- **id_rsa**
+- **id_ecdsa**
+- **id_ed25519**
+
+depending on the key algorithm used.
+
+---
+
+Make sure an account for the user exists on the server. The clients' **id_ed25519.pub** will be copied to the server's **~/.ssh/authorized_keys** file in the user's home directory. 
+
+## 4. Client
+
+**ssh-keygen**
+
+Clients need public and private keys. A pair may be created with ( of course, **not entering** a passphrase ):
+
+```user $
+ssh-keygen -t ed25519
+```
+
+Then authorize the public key with the server:
+
+```user $
+ssh-copy-id -i ~/.shh/id_ed25519.pub <username>@<server>```
