@@ -1,4 +1,4 @@
-# SSH
+# Installing Pipewire
 
 This guide covers the installation and basic service configuration of **Pipewire** on Arix Linux. Be careful which user you run commands from.
 
@@ -75,4 +75,49 @@ ssh-keygen -t ed25519
 Then authorize the public key with the server:
 
 ```user $
-ssh-copy-id -i ~/.shh/id_ed25519.pub <username>@<server>```
+ssh-copy-id -i ~/.shh/id_ed25519.pub <username>@<server>
+```
+
+Afterwards a passwordless login should be possible doing:
+
+```user $
+ssh <user>@<server>
+```
+
+---
+
+# 5. Server
+
+The file **/etc/ssh/sshd_config** should be set to ``PasswordAuthentication no`` after the client adds their public key.
+
+Then restart the sshd service to authenticate without passwords.
+
+If you use [Dinit](https://arixlinux.wasmer.app/wiki.php?article=Dinit%20focus.md) on the server:
+
+Start ssh server:
+
+```root #
+dinitctl start sshd
+```
+
+Add ssh server to autostart:
+
+```root #
+dinitctl enable sshd
+```
+
+Stop ssh server:
+
+```root #
+dinitctl stop sshd
+```
+
+Disable ssh server autostart:
+
+```root #
+dinitctl disable sshd
+```
+
+# 6. Remote services over ssh
+
+SSH may be used to access remote services, such as HTTP, HTTPS, fileshares, etc., through an encrypted "tunnel".
