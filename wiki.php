@@ -31,21 +31,26 @@ if ($article) {
             preg_match('/data-info="([^"]*)"/', $attrs, $infoMatch);
             $info = $infoMatch[1] ?? '';
             $lines = explode("\n", $code);
+            if (end($lines) === '') {
+                array_pop($lines);
+            }
             $commandLines = '';
             foreach ($lines as $line) {
-                $trimmed = trim($line);
-                if ($trimmed === '') continue;
                 if ($info === 'user') {
-                    $cls = 'command-line user';
+                    if ($line === '') continue;
+                    $commandLines .= '<span class="command-line user">' . htmlspecialchars($line, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</span>\n";
                 } elseif ($info === '') {
-                    $cls = 'command-line';
+                    if ($line === '') {
+                        $commandLines .= "<br>\n";
+                    } else {
+                        $commandLines .= '<span class="code-line">' . htmlspecialchars($line, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</span>\n";
+                    }
                 } else {
-                    $cmd = htmlspecialchars($trimmed, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-                    $prompt = htmlspecialchars($info . ' ', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    if ($line === '') continue;
+                    $cmd = htmlspecialchars($line, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    $prompt = str_replace('&gt;', '>', htmlspecialchars($info . ' ', ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                     $commandLines .= '<span class="command-line custom-prompt" data-prompt="' . $prompt . '">' . $cmd . "</span>\n";
-                    continue;
                 }
-                $commandLines .= '<span class="' . $cls . '">' . htmlspecialchars($trimmed, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</span>\n";
             }
             return '<div class="command-wrapper">'
                 . '<button class="copy-btn">[Copy]</button>'
