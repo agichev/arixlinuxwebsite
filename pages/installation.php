@@ -356,7 +356,7 @@ export LC_COLLATE="C"</pre>
                 <button class="copy-btn">[Copy]</button>
                 <div class="command-block">
                     <span class="command-line">pacman -S grub efibootmgr</span>
-                    <span class="command-line">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</span>
+                    <span class="command-line">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arix</span>
                     <span class="command-line">grub-mkconfig -o /boot/grub/grub.cfg</span>
                 </div>
             </div>

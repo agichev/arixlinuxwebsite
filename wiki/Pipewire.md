@@ -8,7 +8,7 @@ This guide covers the installation and basic service configuration of **Pipewire
 
 If you installed your system using [arix-install](https://arixlinux.wasmer.app/wiki.php?article=arix-install.md) with enabling pipewire you may enable pipewire in just one command:
 
-```user
+```user $
 setup-pipewire
 ```
 
@@ -16,7 +16,7 @@ setup-pipewire
 
 Install the package using pacman
 
-```bash
+```root #
 pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit
 ```
 
@@ -28,39 +28,39 @@ Once installed, you need to manage the service.
 
 Firtly you need to enable turnstile servise to automaticly start at boot:
 
-```bash
+```root #
 dinitctl enable turnstiled
 ```
 
-```bash
+```root #
 dinitctl start turnstiled
 ```
 
 To start the services immediately:
 
-```user
+```user $
 dinitctl --user start pipewire
 ```
 
-```user
+```user $
 dinitctl --user start pipewire-pulse
 ```
 
-```user
+```user $
 dinitctl --user start wireplumber
 ```
 
 To enable the services to start automatically at boot:
 
-```user
+```user $
 dinitctl --user enable pipewire
 ```
 
-```user
+```user $
 dinitctl --user enable pipewire-pulse
 ```
 
-```user
+```user $
 dinitctl --user enable wireplumber
 ```
 
@@ -72,13 +72,13 @@ To verify that the application is running correctly, you can check its status.
 
 ### Check Service Status
 
-```user
+```user $
 dinitctl --user status pipewire
 ```
 
-```user
+```user $
 dinitctl --user status pipewire-pulse
 ```
 
-```user
+```user $
 dinitctl --user status wireplumber
