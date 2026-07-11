@@ -6,6 +6,10 @@ This guide covers the installation and basic service configuration of **Pipewire
 
 ## 1. Installation
 
+If you installed your system using [arix-install](https://arixlinux.wasmer.app/wiki.php?article=arix-install.md) with enabling pipewire you may enable pipewire in just one command:
+
+user $ ```setup-pipewire```
+
 Install the package using pacman
 
 root # ```pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit```
