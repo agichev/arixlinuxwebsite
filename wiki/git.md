@@ -99,7 +99,13 @@ One of many features of git - on commit message writing screen (fot example in V
 [commit]
     verbose = true
 ``
-
+> ` FILE ` **`/etc/portage/make.conf`** **Example *MAKEOPTS* declaration**
+> 
+> `# If left undefined, Portage's default behavior is to:`
+> `# - set the MAKEOPTS jobs value to the same number of threads returned by 'nproc'`
+> `# - set the MAKEOPTS load-average value slightly above the number of threads returned by 'nproc'...`
+> `# Please replace '4' as appropriate for the system (min(RAM/2GB, threads), or leave it unset.`
+> `MAKEOPTS="-j4 -l15"`
 ---
 
 ## 4. Common commands
