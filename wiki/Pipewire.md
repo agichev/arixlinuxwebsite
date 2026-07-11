@@ -14,9 +14,7 @@ user $ ```setup-pipewire```
 
 Install the package using pacman
 
-```bash
-pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit
-```
+root # ```pacman -S turnstile-dinit pipewire-dinit pipewire-pulse-dinit wireplumber-dinit```
 
 ---
 
@@ -26,41 +24,25 @@ Once installed, you need to manage the service.
 
 Firtly you need to enable turnstile servise to automaticly start at boot:
 
-```bash
-dinitctl enable turnstiled
-```
+root # ```dinitctl enable turnstiled```
 
-```bash
-dinitctl start turnstiled
-```
+root # ```dinitctl start turnstiled```
 
 To start the services immediately:
 
-```user
-dinitctl --user start pipewire
-```
+user $ ```dinitctl --user start pipewire```
 
-```user
-dinitctl --user start pipewire-pulse
-```
+user $ ```dinitctl --user start pipewire-pulse```
 
-```user
-dinitctl --user start wireplumber
-```
+user $ ```dinitctl --user start wireplumber```
 
 To enable the services to start automatically at boot:
 
-```user
-dinitctl --user enable pipewire
-```
+user $ ```dinitctl --user enable pipewire```
 
-```user
-dinitctl --user enable pipewire-pulse
-```
+user $ ```dinitctl --user enable pipewire-pulse```
 
-```user
-dinitctl --user enable wireplumber
-```
+user $ ```dinitctl --user enable wireplumber```
 
 ---
 
@@ -70,13 +52,8 @@ To verify that the application is running correctly, you can check its status.
 
 ### Check Service Status
 
-```user
-dinitctl --user status pipewire
-```
+user $ ```dinitctl --user status pipewire```
 
-```user
-dinitctl --user status pipewire-pulse
-```
+user $ ```dinitctl --user status pipewire-pulse```
 
-```user
-dinitctl --user status wireplumber
+user $ ```dinitctl --user status wireplumber```
