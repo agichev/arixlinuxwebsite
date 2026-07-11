@@ -96,7 +96,7 @@ One of many features of git - on commit message writing screen (fot example in V
 
 ` FILE ` **~/.gitconfig**
 
-``` 
+``` FILE **~/.gitconfig**
 [commit]
     verbose = true
 ```
