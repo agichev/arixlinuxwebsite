@@ -107,13 +107,22 @@ if ($isStandalone) {
 
 <div class="selector-group">
     <div class="tabs">
-        <div class="tab active" data-target="openrc-clock">OpenRC</div>
+        <div class="tab active" data-target="dinit-clock">dinit</div>
+        <div class="tab" data-target="openrc-clock">OpenRC</div>
         <div class="tab" data-target="runit-clock">Runit</div>
         <div class="tab" data-target="s6-clock">s6</div>
-        <div class="tab" data-target="dinit-clock">dinit</div>
     </div>
     <div class="tab-panels">
-        <div id="openrc-clock" class="tab-content active">
+        <div id="dinit-clock" class="tab-content active">
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">dinitctl start ntpd</span>
+                </div>
+            </div>
+            <p class="comment">Start the NTP service using dinit.</p>
+        </div>
+        <div id="openrc-clock" class="tab-content">
             <div class="command-wrapper">
                 <button class="copy-btn">[Copy]</button>
                 <div class="command-block">
@@ -140,15 +149,6 @@ if ($isStandalone) {
             </div>
             <p class="comment">Start the NTP service using s6.</p>
         </div>
-        <div id="dinit-clock" class="tab-content">
-            <div class="command-wrapper">
-                <button class="copy-btn">[Copy]</button>
-                <div class="command-block">
-                    <span class="command-line">dinitctl start ntpd</span>
-                </div>
-            </div>
-            <p class="comment">Start the NTP service using dinit.</p>
-        </div>
     </div>
 </div>
 
@@ -157,13 +157,22 @@ if ($isStandalone) {
 
 <div class="selector-group">
     <div class="tabs">
-        <div class="tab active" data-target="openrc-install">OpenRC</div>
+        <div class="tab active" data-target="dinit-install">dinit</div>
+        <div class="tab" data-target="openrc-install">OpenRC</div>
         <div class="tab" data-target="runit-install">Runit</div>
         <div class="tab" data-target="s6-install">s6</div>
-        <div class="tab" data-target="dinit-install">dinit</div>
     </div>
     <div class="tab-panels">
-        <div id="openrc-install" class="tab-content active">
+        <div id="dinit-install" class="tab-content active">
+            <div class="command-wrapper">
+                <button class="copy-btn">[Copy]</button>
+                <div class="command-block">
+                    <span class="command-line">basestrap /mnt base base-devel dinit elogind-dinit</span>
+                </div>
+            </div>
+            <p class="comment">Install base system with dinit init system.</p>
+        </div>
+        <div id="openrc-install" class="tab-content">
             <div class="command-wrapper">
                 <button class="copy-btn">[Copy]</button>
                 <div class="command-block">
@@ -189,15 +198,6 @@ if ($isStandalone) {
                 </div>
             </div>
             <p class="comment">Install base system with s6 init system.</p>
-        </div>
-        <div id="dinit-install" class="tab-content">
-            <div class="command-wrapper">
-                <button class="copy-btn">[Copy]</button>
-                <div class="command-block">
-                    <span class="command-line">basestrap /mnt base base-devel dinit elogind-dinit</span>
-                </div>
-            </div>
-            <p class="comment">Install base system with dinit init system.</p>
         </div>
     </div>
 </div>
@@ -378,13 +378,23 @@ export LC_COLLATE="C"</pre>
             <p>Select for your init system:</p>
             <div class="selector-group">
                 <div class="tabs">
-                    <div class="tab active" data-target="dhcpcd-openrc">OpenRC</div>
+                    <div class="tab active" data-target="dhcpcd-dinit">dinit</div>
+                    <div class="tab" data-target="dhcpcd-openrc">OpenRC</div>
                     <div class="tab" data-target="dhcpcd-runit">Runit</div>
                     <div class="tab" data-target="dhcpcd-s6">s6</div>
-                    <div class="tab" data-target="dhcpcd-dinit">dinit</div>
                 </div>
                 <div class="tab-panels">
-                    <div id="dhcpcd-openrc" class="tab-content active">
+                    <div id="dhcpcd-dinit" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">pacman -S dhcpcd dhcpcd-dinit</span>
+                                <span class="command-line">ln -s /etc/dinit.d/dhcpcd /etc/dinit.d/boot.d/</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install and enable DHCP client for dinit.</p>
+                    </div>
+                    <div id="dhcpcd-openrc" class="tab-content">
                         <div class="command-wrapper">
                             <button class="copy-btn">[Copy]</button>
                             <div class="command-block">
@@ -415,16 +425,6 @@ export LC_COLLATE="C"</pre>
                         </div>
                         <p class="comment">Install and enable DHCP client for s6.</p>
                     </div>
-                    <div id="dhcpcd-dinit" class="tab-content">
-                        <div class="command-wrapper">
-                            <button class="copy-btn">[Copy]</button>
-                            <div class="command-block">
-                                <span class="command-line">pacman -S dhcpcd dhcpcd-dinit</span>
-                                <span class="command-line">ln -s /etc/dinit.d/dhcpcd /etc/dinit.d/boot.d/</span>
-                            </div>
-                        </div>
-                        <p class="comment">Install and enable DHCP client for dinit.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -433,13 +433,23 @@ export LC_COLLATE="C"</pre>
             <p>Select for your init system:</p>
             <div class="selector-group">
                 <div class="tabs">
-                    <div class="tab active" data-target="nm-openrc">OpenRC</div>
+                    <div class="tab active" data-target="nm-dinit">dinit</div>
+                    <div class="tab" data-target="nm-openrc">OpenRC</div>
                     <div class="tab" data-target="nm-runit">Runit</div>
                     <div class="tab" data-target="nm-s6">s6</div>
-                    <div class="tab" data-target="nm-dinit">dinit</div>
                 </div>
                 <div class="tab-panels">
-                    <div id="nm-openrc" class="tab-content active">
+                    <div id="nm-dinit" class="tab-content active">
+                        <div class="command-wrapper">
+                            <button class="copy-btn">[Copy]</button>
+                            <div class="command-block">
+                                <span class="command-line">pacman -S networkmanager networkmanager-dinit</span>
+                                <span class="command-line">ln -s /etc/dinit.d/NetworkManager /etc/dinit.d/boot.d/</span>
+                            </div>
+                        </div>
+                        <p class="comment">Install and enable NetworkManager for dinit.</p>
+                    </div>
+                    <div id="nm-openrc" class="tab-content">
                         <div class="command-wrapper">
                             <button class="copy-btn">[Copy]</button>
                             <div class="command-block">
@@ -469,16 +479,6 @@ export LC_COLLATE="C"</pre>
                             </div>
                         </div>
                         <p class="comment">Install and enable NetworkManager for s6.</p>
-                    </div>
-                    <div id="nm-dinit" class="tab-content">
-                        <div class="command-wrapper">
-                            <button class="copy-btn">[Copy]</button>
-                            <div class="command-block">
-                                <span class="command-line">pacman -S networkmanager networkmanager-dinit</span>
-                                <span class="command-line">ln -s /etc/dinit.d/NetworkManager /etc/dinit.d/boot.d/</span>
-                            </div>
-                        </div>
-                        <p class="comment">Install and enable NetworkManager for dinit.</p>
                     </div>
                 </div>
             </div>

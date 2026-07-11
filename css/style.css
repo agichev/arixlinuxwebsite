@@ -208,6 +208,11 @@ code {
     font-weight: bold;
 }
 
+.command-line.user::before {
+    content: "$ ";
+    color: #3fb950;
+}
+
 pre {
     background-color: #0d1117;
     border: 1px solid #30363d;
