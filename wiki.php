@@ -23,17 +23,28 @@ if ($article) {
 
     // Transform fenced code blocks (<pre><code>) into command-wrapper structure
     $html = preg_replace_callback(
-        '/<pre><code(?:\s+class="([^"]*)")?>([\s\S]*?)<\/code><\/pre>/',
+        '/<pre><code([^>]*)>([\s\S]*?)<\/code><\/pre>/',
         function ($matches) {
-            $class = $matches[1] ?? '';
+            $attrs = $matches[1] ?? '';
             $code = html_entity_decode($matches[2], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            preg_match('/class="([^"]*)"/', $attrs, $classMatch);
+            preg_match('/data-info="([^"]*)"/', $attrs, $infoMatch);
+            $info = $infoMatch[1] ?? '';
             $lines = explode("\n", $code);
             $commandLines = '';
-            $isUser = strpos($class, 'language-user') !== false;
             foreach ($lines as $line) {
                 $trimmed = trim($line);
                 if ($trimmed === '') continue;
-                $cls = 'command-line' . ($isUser ? ' user' : '');
+                if ($info === 'user') {
+                    $cls = 'command-line user';
+                } elseif ($info === '') {
+                    $cls = 'command-line';
+                } else {
+                    $cmd = htmlspecialchars($trimmed, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    $prompt = htmlspecialchars($info . ' ', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    $commandLines .= '<span class="command-line custom-prompt" data-prompt="' . $prompt . '">' . $cmd . "</span>\n";
+                    continue;
+                }
                 $commandLines .= '<span class="' . $cls . '">' . htmlspecialchars($trimmed, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</span>\n";
             }
             return '<div class="command-wrapper">'

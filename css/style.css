@@ -213,6 +213,13 @@ code {
     color: #3fb950;
 }
 
+.command-line.custom-prompt::before {
+    content: attr(data-prompt);
+    color: #58a6ff;
+    font-weight: bold;
+    white-space: pre;
+}
+
 pre {
     background-color: #0d1117;
     border: 1px solid #30363d;

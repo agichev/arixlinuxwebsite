@@ -484,7 +484,7 @@ class Parsedown
              */
             $language = substr($infostring, 0, strcspn($infostring, " \t\n\f\r"));
 
-            $Element['attributes'] = array('class' => "language-$language");
+            $Element['attributes'] = array('class' => "language-$language", 'data-info' => $infostring);
         }
 
         $Block = array(
