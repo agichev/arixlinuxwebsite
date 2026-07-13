@@ -12,6 +12,7 @@
 <?php
 $bgImages = [
     '/pictures/_ (5).jpeg',
+    '/pictures/zolo.png',
     '/pictures/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg',
     '/pictures/bermix-studio-bCrM2e1M0a4-unsplash.jpg',
     '/pictures/daniel-falcao-Pt27b3dRdVA-unsplash.jpg',
